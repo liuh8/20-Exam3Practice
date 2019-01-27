@@ -134,9 +134,10 @@ def doubler(list1, list2):
     # -------------------------------------------------------------------------
     for k in range(len(list1)):
         list1[k] = list1[k] * 2
+    seq = []
     for i in range(len(list2)):
-        list2[i] = list2[i] * 2
-    return list2
+        seq = seq + [list2[i] * 2]
+    return seq
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.

@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Hongyu Liu.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -110,6 +110,12 @@ def run_test_practice_problem3():
              st.SimpleTestCase(practice_problem3,
                                [0, 1, 1.414213562373],
                                [286602]),
+             # st.SimpleTestCase(practice_problem3,
+             #                   [0, 1, 1.414213562373],
+             #                   [286602]),
+             # st.SimpleTestCase(practice_problem3,
+             #                   [0, 1, 1.414213562373],
+             #                   [286602]),
              ]
     # 14th test:
     big_list = []

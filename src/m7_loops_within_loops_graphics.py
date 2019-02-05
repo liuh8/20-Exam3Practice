@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Hongyu Liu.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -30,6 +30,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 ###############################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -90,7 +91,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # done: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -102,7 +103,52 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
-
+    x=point.x
+    y=point.y
+    r=radius
+    d=math.sqrt(3*(r**2))
+    for k in range(n):
+        x1=x-r*k
+        y1=y-d*k
+        c = rg.Circle(rg.Point(x1, y1), r)
+        c.fill_color = color
+        c.attach_to(window)
+        for i in range(k):
+            x1=x1+2*r
+            c=rg.Circle(rg.Point(x1,y1),r)
+            c.fill_color=color
+            c.attach_to(window)
+    for k in range(n):
+        x1=x-r*k
+        y1=y+d*k
+        c = rg.Circle(rg.Point(x1, y1), r)
+        c.fill_color = color
+        c.attach_to(window)
+        for i in range(k):
+            x1=x1+2*r
+            c=rg.Circle(rg.Point(x1,y1),r)
+            c.fill_color=color
+            c.attach_to(window)
+    a=x-r
+    b=y
+    l=2*r
+    for k in range(n):
+        x2=a-r*k
+        e=x2
+        y2=b+d*k
+        for i in range(k+1):
+            e=e+l
+            li=rg.Line(rg.Point(e,y2),rg.Point(x2,y2))
+            li.attach_to(window)
+    for k in range(n):
+        x2 = a - r * k
+        e = x2
+        y2 = b - d * k
+        for i in range(k + 1):
+            e = e + l
+            li = rg.Line(rg.Point(e, y2), rg.Point(x2, y2))
+            li.attach_to(window)
+    window.render()
 
 def run_test_many_hourglasses():
     """ Tests the    many_hourglasses    function. """
@@ -164,7 +210,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -180,7 +226,23 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+    r=square.length_of_each_side//2
+    c=square.center
+    d = math.sqrt(3 * (r ** 2))
+    for k in range(m):
+        c.x = c.x + (1 + 2 * k) * r
+        xl = c.x - r * (k + 1)
+        yl = c.y - k * d - r
+        xr = c.x + r * (1 + k)
+        yr = c.y + k * d + r
+        re=rg.Rectangle(rg.Point(xl,yl),rg.Point(xr,yr))
+        re.attach_to(window)
+        for i in range(k + 1):
+            i = i % len(colors)
+            co = colors[i]
+            hourglass(window, k + 1 , rg.Point(c.x, c.y), r, co)
 
+    window.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
